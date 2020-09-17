@@ -91,6 +91,9 @@ export default class OAuth {
 		const code_challenge_method = 'S256';
 
 		const scopesString = this._scopes.join(' ');
+			
+		const nonce = '1234';
+		console.log('===== nonce: ' + nonce);
 
 		const queryString = Object.entries({
 			redirect_uri: redirectSignIn,
@@ -99,6 +102,7 @@ export default class OAuth {
 			identity_provider: provider,
 			scope: scopesString,
 			state,
+			nonce: nonce,
 			...(responseType === 'code' ? { code_challenge } : {}),
 			...(responseType === 'code' ? { code_challenge_method } : {}),
 		})
